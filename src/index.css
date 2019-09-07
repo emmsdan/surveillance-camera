@@ -2,9 +2,8 @@
 
 body {
   margin: 0;
-  padding: 0;
   font-family: courier-std, monospace;
-  font-weight: 700;
+  font-size: 12px;
   letter-spacing: 2px;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -12,6 +11,7 @@ body {
   background-color: #000;
   background: url('./assets/green-back.jpg');
   padding: 20px;
+  color: #0bff06;
 }
 
 code {
