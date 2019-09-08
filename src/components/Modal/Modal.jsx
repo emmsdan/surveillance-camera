@@ -24,7 +24,23 @@ const Action = ({ setActions, actions }) => {
   );
 };
 
-const Modal = ({ title, content }) => {
+const ModalContent = (content, actions) => {
+  return !actions.isMinimizes && <div className="content">{content}</div>;
+};
+
+const ModalHeader = (title, actions, setActions) => {
+  return (
+    <div className="header">
+      <div className="">{title}</div>
+      <Action
+        actions={actions}
+        setActions={action => setActions({ ...action })}
+      />
+    </div>
+  );
+};
+
+const Modal = ({ title, children }) => {
   const [actions, setActions] = useState({
     isMinimizes: false,
     isFullscreen: false,
@@ -32,24 +48,18 @@ const Modal = ({ title, content }) => {
     ClientRect: {},
     defaultStyle: {}
   });
-
   const styles = { ...actions.defaultStyle };
   if (actions.isFullscreen) {
     styles.width = '98%';
     styles.height = '90vh';
   }
-
   return (
     !actions.isClose && (
       <div className={`modal`} style={styles}>
-        <div className="header">
-          <div className="">{title}</div>
-          <Action
-            actions={actions}
-            setActions={action => setActions({ ...action })}
-          />
-        </div>
-        {!actions.isMinimizes && <div className="content">{content}</div>}
+        {ModalHeader(title, actions, action => {
+          setActions({ ...action });
+        })}
+        {ModalContent(children, actions)}
       </div>
     )
   );

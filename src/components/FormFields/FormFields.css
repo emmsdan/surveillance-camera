@@ -1,0 +1,55 @@
+:root {
+  --fade-out-light: rgba(11, 255, 6, 0.3);
+  --deem-light: rgb(15, 167, 12);
+  --light: #0bff06;
+  --night: #000000;
+}
+
+.form-group {
+  width: calc(100% - 25px);
+  padding: 5px;
+  display: flex;
+  align-items: center;
+}
+
+.form-group label {
+  font-family: Aldrich;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 16px;
+  text-transform: uppercase;
+  color: var(--light);
+  max-width: 150px;
+  width: 150px;
+  flex-grow: 0.6;
+}
+
+.form-group input,
+select,
+button {
+  background: var(--night);
+  color: var(--light);
+  border: 0.5px solid var(--deem-light);
+  box-sizing: border-box;
+  border-radius: 6px;
+  padding: 10px;
+  height: 49px;
+  flex-grow: 2;
+  font-size: 14px;
+}
+
+.form-group input:focus {
+  outline: none;
+  border: var(--light);
+  background: var(--light);
+  color: var(--night);
+}
+
+.form-group button {
+  flex-grow: initial;
+  min-width: 130px;
+  padding: 10px;
+  background: var(--light);
+  color: var(--night);
+  text-transform: uppercase;
+}

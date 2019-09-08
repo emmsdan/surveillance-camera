@@ -1,9 +1,19 @@
+@import url('https://use.typekit.net/erh4jzb.css');
+@import url('https://fonts.googleapis.com/css?family=Aldrich&display=swap');
+
+:root {
+  --fade-out-light: rgba(11, 255, 6, 0.3);
+  --deem-light: rgb(15, 167, 12);
+  --light: #0BFF06;
+  --night: #000000;
+}
+
 body {
   margin: 0;
   padding: 0;
-  background-color: #000;
-  color: #0bff06;
-  font-family: courier-std, monospace;
+  background-color: var(--night);
+  color: var(--light);
+  font-family: 'Aldrich', sans-serif, courier-std, monospace;
   font-size: 12px;
   letter-spacing: 2px;
   -webkit-font-smoothing: antialiased;
@@ -11,7 +21,6 @@ body {
 }
 
 #root {
-  background: #afc;
   width: 100%;
   max-width: 1440px;
   margin: 0 auto;
