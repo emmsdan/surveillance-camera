@@ -23,18 +23,22 @@ const Action = ({ setActions, actions }) => {
     </div>
   );
 };
+
 const Modal = ({ title, content }) => {
   const [actions, setActions] = useState({
     isMinimizes: false,
     isFullscreen: false,
-    isClose: false
+    isClose: false,
+    ClientRect: {},
+    defaultStyle: {}
   });
-  const styles = {};
-  let classNAme = '';
+
+  const styles = { ...actions.defaultStyle };
   if (actions.isFullscreen) {
     styles.width = '98%';
     styles.height = '90vh';
   }
+
   return (
     !actions.isClose && (
       <div className={`modal`} style={styles}>

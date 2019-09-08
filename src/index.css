@@ -1,17 +1,7 @@
 @import url('https://use.typekit.net/erh4jzb.css');
 
-body {
-  margin: 0;
-  font-family: courier-std, monospace;
-  font-size: 12px;
-  letter-spacing: 2px;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-
-  background-color: #000;
-  background: url('./assets/green-back.jpg');
-  padding: 20px;
-  color: #0bff06;
+#root {
+  background: url('./assets/green-back.jpg') no-repeat;
 }
 
 code {

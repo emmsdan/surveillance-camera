@@ -7,9 +7,9 @@ const Mentor = () => {
 };
 function App() {
   return (
-    <>
+    <div className="">
       <Modal title="Box Title" content={Mentor()} />
-    </>
+    </div>
   );
 }
 
