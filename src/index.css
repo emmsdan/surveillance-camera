@@ -1,8 +1,34 @@
 #root {
   background: url('./assets/green-back.jpg') no-repeat;
+  min-height: 90vh;
 }
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+}
+
+.text {
+  animation: typeText 5s steps(30) 1s 1 normal both,
+    curserAnim 500ms steps(30) infinite normal;
+}
+
+@keyframes typeText {
+  0% {
+    width: 0em;
+  }
+
+  100% {
+    width: 100%;
+  }
+}
+
+@keyframes curserAnim {
+  0% {
+    border-right-color: #000000;
+  }
+
+  100% {
+    border-right-color: #ff6f61;
+  }
 }

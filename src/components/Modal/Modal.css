@@ -1,9 +1,16 @@
+:root {
+  --fade-out-light: rgba(11, 255, 6, 0.3);
+  --deem-light: rgb(15, 167, 12);
+  --light: #0bff06;
+  --night: #000000;
+}
+
 .modal {
   position: relative;
   width: 400px;
   margin: auto;
   overflow: hidden;
-  border: 2px solid #0bff06;
+  border: 2px solid var(--light);
   border-radius: 5px;
 }
 
@@ -57,8 +64,8 @@
   font-size: 16px;
   width: 100%;
   padding: 10px 0 10px 10px;
-  background-color: #0bff06;
-  color: #000;
+  background-color: var(--light);
+  color: var(--night);
   cursor: move;
 }
 
@@ -69,8 +76,8 @@
 }
 
 .modal .content {
-  background-color: #000;
-  color: #0bff06;
+  background-color: var(--night);
+  color: var(--light);
   height: 100%;
   width: 100%;
   font-size: 7px;
