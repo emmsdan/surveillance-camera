@@ -1,0 +1,20 @@
+:root {
+  --fade-out-light: rgba(11, 255, 6, 0.3);
+  --deem-light: rgb(15, 167, 12);
+  --light: #0bff06;
+  --night: #000000;
+}
+
+.loader {
+  background: none;
+  border: 1px solid var(--light);
+  max-width: 500px;
+  height: 40px;
+  margin: auto;
+}
+
+.loading {
+  background: var(--light);
+  width: 0%;
+  height: 100%;
+}
