@@ -29,7 +29,7 @@ export const removeUserUUID = () => {
   }
 };
 export const getUserUUID = () => {
-  return localStorage.getItem(USER_HASH) || setUserUUID();
+  return localStorage.getItem(USER_HASH) || '';
 };
 
 export const loginAttempt = (attempt = 0) => {

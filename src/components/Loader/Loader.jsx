@@ -1,21 +1,23 @@
-import React, { useState } from 'react';
+import React from 'react';
 import './Loader.css';
 
-const timer = eve => {
+const timer = (eve, callback) => {
   let percent = 0;
   const Increase = setInterval(() => {
-    eve.style.width = percent + '%';
-    if (percent >= 100) {
-      clearInterval(Increase);
+    if (eve) {
+      if (percent >= 100) {
+        clearInterval(Increase);
+        callback(percent);
+      }
+      eve.style.width = percent + '%';
+      percent += percent < 50 ? 10 : 5;
     }
-    percent += percent < 50 ? 5 : 2;
   }, 500);
-  console.log(eve.style.width);
 };
-const Loader = ({ width, time = timer }) => {
+const Loader = ({ width, callback = () => {}, time = timer }) => {
   return (
     <div className="loader">
-      <div className="loading" ref={time}></div>
+      <div className="loading" ref={event => time(event, callback)}></div>
     </div>
   );
 };

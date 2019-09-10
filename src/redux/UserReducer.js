@@ -15,7 +15,7 @@ export default (state = initialUserState, action) => {
   switch (action.type) {
     case LOGIN:
       delete state.attempt;
-      return { ...state, user: { id: getUserUUID() }, isLogin: true };
+      return { ...state, id: setUserUUID(), isLogin: true };
 
     case LOGIN_ATTEMPT:
       removeUserUUID();

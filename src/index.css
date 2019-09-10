@@ -8,6 +8,7 @@
 
 #root {
   background: url('./assets/green-back.jpg') no-repeat;
+  background-size: contain;
   min-height: 90vh;
 }
 

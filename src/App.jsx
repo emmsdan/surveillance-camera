@@ -1,8 +1,8 @@
-import React, { useState } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
+import React from 'react';
+import { useSelector } from 'react-redux';
 import Typewriter from 'typewriter-effect';
-import Loader from './components/Loader/Loader';
 import Login from './Views/Login/Login';
+import AppShell from './components/AppShell/AppShell';
 
 function App() {
   const consoleR = useSelector(state => state);
@@ -18,7 +18,7 @@ function App() {
           loop: false
         }}
       />
-      {!user.id.length ? <Login /> : <Loader />}
+      {!user.id.length ? <Login /> : <AppShell />}
     </>
   );
 }
