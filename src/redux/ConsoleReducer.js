@@ -2,7 +2,6 @@ import { CMD } from './Actions';
 import { initialInterfaceState } from './InterfaceReducer';
 
 export const initialConsoleState = {
-  ...initialInterfaceState,
   directory: '$ h_ed/',
   lastAction: ''
 };

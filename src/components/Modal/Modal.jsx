@@ -40,7 +40,7 @@ const ModalHeader = (title, actions, setActions) => {
   );
 };
 
-const Modal = ({ title, children }) => {
+const Modal = ({ title, className, children }) => {
   const [actions, setActions] = useState({
     isMinimizes: false,
     isFullscreen: false,
@@ -55,7 +55,7 @@ const Modal = ({ title, children }) => {
   }
   return (
     !actions.isClose && (
-      <div className={`modal`} style={styles}>
+      <div className={`modal ${className}`} style={styles}>
         {ModalHeader(title, actions, action => {
           setActions({ ...action });
         })}

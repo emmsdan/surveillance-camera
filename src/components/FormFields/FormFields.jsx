@@ -1,19 +1,27 @@
 import React from 'react';
 import './FormFields.css';
 
-export const FormInput = ({ id, title, value, noLabel }) => {
+export const FormInput = ({ id, title, value, noLabel, placeholder, reff }) => {
   return (
     <div className="form-group">
       {noLabel && <label for={id}>{title}</label>}
-      <input id={id} defaultValue={value} />
+      <input
+        id={id}
+        defaultValue={value}
+        placeholder={placeholder}
+        ref={reff}
+      />
     </div>
   );
 };
 
-export const FormButton = ({ id, title }) => {
+export const FormButton = ({ id, title, type, onClick }) => {
   return (
     <div className="form-group">
-      <button id={id}> {title} </button>
+      <button id={id} type={type || 'button'} onClick={onClick}>
+        {' '}
+        {title}{' '}
+      </button>
     </div>
   );
 };

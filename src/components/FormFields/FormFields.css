@@ -3,6 +3,30 @@
   --deem-light: rgb(15, 167, 12);
   --light: #0bff06;
   --night: #000000;
+  --danger: rgb(235, 12, 131);
+}
+
+/* Change Autocomplete styles in Chrome*/
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+select:-webkit-autofill,
+select:-webkit-autofill:hover,
+select:-webkit-autofill:focus {
+  box-shadow: 0 0 0px 1000px var(--night) inset;
+  -webkit-text-fill-color: var(--danger);
+  transition: background-color 5000s ease-in-out 0s;
+}
+
+input:-moz-autofill,
+input:-moz-autofill:hover,
+input:-moz-autofill:focus,
+select:-moz-autofill,
+select:-moz-autofill:hover,
+select:-moz-autofill:focus {
+  box-shadow: 0 0 0px 1000px var(--night) inset;
+  -moz-text-fill-color: var(--danger);
+  transition: background-color 5000s ease-in-out 0s;
 }
 
 .form-group {
@@ -38,11 +62,16 @@ button {
   font-size: 14px;
 }
 
-.form-group input:focus {
+.form-group input:focus,
+.form-group button:focus {
   outline: none;
   border: var(--light);
   background: var(--light);
   color: var(--night);
+}
+
+.form-group input::placeholder {
+  color: var(--deem-light);
 }
 
 .form-group button {
@@ -52,4 +81,9 @@ button {
   background: var(--light);
   color: var(--night);
   text-transform: uppercase;
+  cursor: pointer;
+}
+
+.form-group button:hover {
+  border: 30px;
 }

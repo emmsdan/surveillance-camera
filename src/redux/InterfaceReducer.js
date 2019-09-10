@@ -1,9 +1,7 @@
 import { INTERFACE } from './Actions';
-import { getUserUUID } from '../utils/utils';
 
 export const initialInterfaceState = {
-  interface: INTERFACE.GUI,
-  user: { id: getUserUUID() }
+  interface: INTERFACE.GUI
 };
 
 export default (state = initialInterfaceState, action) => {

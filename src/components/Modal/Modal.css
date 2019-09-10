@@ -7,7 +7,7 @@
 
 .modal {
   position: relative;
-  width: 400px;
+  width: 450px;
   margin: auto;
   overflow: hidden;
   border: 2px solid var(--light);

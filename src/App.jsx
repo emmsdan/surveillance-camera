@@ -2,11 +2,13 @@ import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import Typewriter from 'typewriter-effect';
 import Loader from './components/Loader/Loader';
+import Login from './Views/Login/Login';
 
 function App() {
-  const consoleR = useSelector(state => state.consoleR);
+  const consoleR = useSelector(state => state);
   const typeWriterInfo = { ...consoleR };
   delete typeWriterInfo.lastAction;
+  const { user } = consoleR;
   return (
     <>
       <Typewriter
@@ -16,7 +18,7 @@ function App() {
           loop: false
         }}
       />
-      <Loader />
+      {!user.id.length ? <Login /> : <Loader />}
     </>
   );
 }
