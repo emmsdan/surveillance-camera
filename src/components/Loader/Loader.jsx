@@ -1,7 +1,7 @@
 import React from 'react';
 import './Loader.css';
 
-const timer = (eve, callback) => {
+const timer = (eve, callback, loadSpeed = 10) => {
   let percent = 0;
   const Increase = setInterval(() => {
     if (eve) {
@@ -10,14 +10,22 @@ const timer = (eve, callback) => {
         callback(percent);
       }
       eve.style.width = percent + '%';
-      percent += percent < 50 ? 10 : 5;
+      percent += percent < 60 ? loadSpeed : loadSpeed / 2;
     }
   }, 500);
 };
-const Loader = ({ width, callback = () => {}, time = timer }) => {
+const Loader = ({
+  width,
+  callback = () => {},
+  time = timer,
+  loadSpeed = 20
+}) => {
   return (
     <div className="loader">
-      <div className="loading" ref={event => time(event, callback)}></div>
+      <div
+        className="loading"
+        ref={event => time(event, callback, loadSpeed)}
+      ></div>
     </div>
   );
 };

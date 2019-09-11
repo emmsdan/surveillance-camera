@@ -1,15 +1,10 @@
 import React from 'react';
+import Camera from './Views/Camera/Camera';
 
 const Views = () => {
   return (
     <>
-      <h1> Hi </h1>
-      <h1> Hi </h1>
-      <h1> Hi </h1>
-      <h1> Hi </h1>
-      <h1> Hi </h1>
-      <h1> Hi </h1>
-      <h1> Hi </h1>
+      <Camera loadAll="true" />
     </>
   );
 };

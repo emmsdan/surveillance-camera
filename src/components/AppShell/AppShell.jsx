@@ -14,7 +14,7 @@ const AppShell = () => {
   return (
     <div className="AppShell">
       <div>
-        {appState.loading && <Loader callback={isLoading} />}
+        {appState.loading && <Loader callback={isLoading} loadSpeed="60" />}
         {!appState.loading && <Views />}
       </div>
     </div>
