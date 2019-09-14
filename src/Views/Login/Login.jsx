@@ -50,9 +50,12 @@ const Login = () => {
   const [login] = useState({ input: React.createRef() });
   const user = useSelector(state => state.user);
   const dispatch = useDispatch();
+  const style = { position: 'relative' };
   return (
     <div className="login">
-      <Modal className="w400p">{isLogin(login, user, dispatch)}</Modal>
+      <Modal className="w400p" offset={style}>
+        {isLogin(login, user, dispatch)}
+      </Modal>
     </div>
   );
 };

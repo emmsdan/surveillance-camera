@@ -40,18 +40,21 @@ const ModalHeader = (title, actions, setActions) => {
   );
 };
 
-const Modal = ({ title, className, children }) => {
+const Modal = ({ title, className, children, offset, isClose = false }) => {
   const [actions, setActions] = useState({
     isMinimizes: false,
     isFullscreen: false,
-    isClose: false,
+    isClose,
     ClientRect: {},
     defaultStyle: {}
   });
-  const styles = { ...actions.defaultStyle };
+  const styles = { ...actions.defaultStyle, ...offset };
   if (actions.isFullscreen) {
     styles.width = '98%';
-    styles.height = '90vh';
+    styles.height = '100%';
+    styles.top = '0';
+    styles.left = '0';
+    styles.right = '0';
   }
   return (
     !actions.isClose && (

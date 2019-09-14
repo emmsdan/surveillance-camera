@@ -26,14 +26,24 @@
   border: 5px solid var(--light);
 }
 
+.singleVideo video {
+  margin: 5px;
+  width: 500px;
+  min-width: 300px;
+  max-height: 900px;
+  filter: hue-rotate(20%);
+}
+
 .hide {
   display: none;
 }
+
 .displace {
   display: none;
   position: absolute;
   top: 0;
 }
+
 .show {
   display: block;
 }
