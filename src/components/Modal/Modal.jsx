@@ -1,71 +1,74 @@
 import React, { useState } from 'react';
+import ReactDOM from 'react-dom';
+import PropTypes from 'prop-types'; // ES6
+
 import './Modal.css';
 
-const Action = ({ setActions, actions }) => {
-  return (
-    <div className="action">
-      <i
-        className="fa fa-minus"
-        onClick={() =>
-          setActions({ ...actions, isMinimizes: !actions.isMinimizes })
-        }
-      ></i>
-      <i
-        className="fa fa-window-maximize"
-        onClick={() =>
-          setActions({ ...actions, isFullscreen: !actions.isFullscreen })
-        }
-      ></i>
-      <i
-        className="fa fa-times"
-        onClick={() => setActions({ ...actions, isClose: !actions.isClose })}
-      ></i>
-    </div>
-  );
+const isFullScreen = isFullscreen => {
+  if (isFullscreen) {
+    return {
+      width: '98%',
+      height: '100%',
+      top: '0px',
+      left: '0px',
+      right: '0'
+    };
+  }
 };
 
-const ModalContent = (content, actions) => {
-  return !actions.isMinimizes && <div className="content">{content}</div>;
-};
-
-const ModalHeader = (title, actions, setActions) => {
+const ModalHeader = (title, actions) => {
+  const { minimize, fullscreen, hide } = actions;
   return (
     <div className="header">
       <div className="">{title}</div>
-      <Action
-        actions={actions}
-        setActions={action => setActions({ ...action })}
-      />
+      <div className="action">
+        <i className="fa fa-minus" onClick={minimize}></i>
+        <i className="fa fa-window-maximize" onClick={fullscreen}></i>
+        <i
+          className="fa fa-times"
+          data-dismiss="modal"
+          aria-label="Close"
+          onClick={hide}
+        ></i>
+      </div>
     </div>
   );
 };
-
-const Modal = ({ title, className, children, offset, isClose = false }) => {
-  const [actions, setActions] = useState({
-    isMinimizes: false,
-    isFullscreen: false,
-    isClose,
-    ClientRect: {},
-    defaultStyle: {}
-  });
-  const styles = { ...actions.defaultStyle, ...offset };
-  if (actions.isFullscreen) {
-    styles.width = '98%';
-    styles.height = '100%';
-    styles.top = '0';
-    styles.left = '0';
-    styles.right = '0';
-  }
-  return (
-    !actions.isClose && (
-      <div className={`modal ${className}`} style={styles}>
-        {ModalHeader(title, actions, action => {
-          setActions({ ...action });
-        })}
-        {ModalContent(children, actions)}
-      </div>
-    )
-  );
+const Modal = props => {
+  // const [button, setButton] = useState()
+  const { actions, styles, title, children, offset } = props;
+  const {
+    isShowing = true,
+    isFullscreen = false,
+    isMinimized = false
+  } = actions;
+  const hide = isMinimized ? 'hide' : '';
+  const useModelStyles = {
+    ...styles,
+    ...offset,
+    ...isFullScreen(isFullscreen)
+  };
+  return isShowing
+    ? ReactDOM.createPortal(
+        <React.Fragment>
+          <div
+            className="modal-wrapper"
+            aria-modal
+            aria-hidden
+            tabIndex={-1}
+            role="dialog"
+          >
+            <div className="modal" style={useModelStyles}>
+              <div className="modal-header">{ModalHeader(title, actions)}</div>
+              <div className={`content ${hide}`}>{children} </div>
+            </div>
+          </div>
+        </React.Fragment>,
+        document.querySelector('#root')
+      )
+    : null;
 };
-
+Modal.propTypes = {
+  actions: PropTypes.object
+};
 export default Modal;

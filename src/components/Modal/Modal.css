@@ -12,6 +12,7 @@
   margin: auto;
   border: 2px solid var(--light);
   border-radius: 5px;
+  z-index: +10;
 }
 
 .move-down {
@@ -85,6 +86,7 @@
   background-color: var(--night);
   color: var(--light);
   height: 100%;
+  min-height: 100px;
   width: calc(100% - 20px);
   max-width: calc(100% - 20px);
   font-size: 7px;
@@ -92,10 +94,11 @@
   margin: 0px;
 }
 
-.modal .content video {
+.modal .content canvas {
   margin: 5px;
   width: 100%;
   /* max-width: calc(100% - 20px); */
   /* max-height: 600px; */
-  /* filter: hue-rotate(20%); */
+  z-index: 1000;
+  filter: brightness(20%);
 }

@@ -78,3 +78,7 @@ i {
 .error i {
   font-size: 5rem;
 }
+
+.hide {
+  display: none !important;
+}

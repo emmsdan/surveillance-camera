@@ -51,54 +51,64 @@ export const createCameras = async (
   const devices = await navigator.mediaDevices.enumerateDevices();
   for (let device of devices) {
     if (device.kind === 'videoinput') {
-      try {
-        const stream = await navigator.mediaDevices.getUserMedia({
-          video: true
-        });
-        const video = document.createElement('video');
-        video.className = className;
-        // Older browsers may not have srcObject
-        if ('srcObject' in video) {
-          video.srcObject = stream;
-        } else {
-          // Avoid using this in new browsers, as it is going away.
-          video.src = URL.createObjectURL(stream);
-        }
-        console.log(device);
-        callback(video, { stream, device });
-        video.play();
-        document.querySelector(parent).appendChild(video);
-      } catch (err) {
-        console.log(err);
-
-        /* handle the error */
-      }
+      getCamera(device, parent, className, callback);
     }
   }
 };
 export const getCamera = async (
-  cameraOrBustDeviceId,
+  device,
   parent,
   className = '',
   callback = (el, str) => {}
 ) => {
   try {
     const stream = await navigator.mediaDevices.getUserMedia({
-      video: { deviceId: { exact: cameraOrBustDeviceId } }
+      video: { deviceId: { exact: device.deviceId } }
     });
     const video = document.createElement('video');
-    video.className = className;
+    const canvas = document.createElement('canvas');
+    const ctx = canvas.getContext('2d');
+    video.width = '400px';
+    video.height = '400px';
+    video.className = `${className} hide`;
     if ('srcObject' in video) {
       video.srcObject = stream;
     } else {
       video.src = URL.createObjectURL(stream);
     }
-    callback(video, { stream });
+    callback(video, { stream, device });
     video.play();
-    document.querySelector(parent).appendChild(video);
+    console.log(document.querySelector(parent));
+    // document.querySelector(parent).appendChild(video);
+    document.querySelector(parent).appendChild(canvas);
+
+    video.addEventListener('canplay', () => paintToCanvas(video, canvas, ctx));
   } catch (err) {
     console.log(err);
-
     /* handle the error */
   }
 };
+
+function paintToCanvas(video, canvas, ctx) {
+  const width = 433;
+  const height = 300;
+  canvas.width = width;
+  canvas.height = height;
+
+  return setInterval(() => {
+    ctx.drawImage(video, 0, 0, width, height);
+    // take the pixels out
+    let pixels = ctx.getImageData(0, 0, width, height);
+    ctx.filter = 'contrast(105%) brightness(153%)';
+
+    // mess with them
+    // pixels = redEffect(pixels);
+
+    // pixels = rgbSplit(pixels);
+    // // ctx.globalAlpha = 0.8;
+
+    // // pixels = greenScreen(pixels);
+    // // put them back
+    ctx.putImageData(pixels, 0, 0);
+  }, 16);
+}
